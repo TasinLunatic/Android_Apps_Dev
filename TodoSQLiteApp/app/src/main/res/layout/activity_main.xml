@@ -6,11 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp"
+    android:padding="12dp"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_margin="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -22,32 +24,32 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="18sp"
-            android:ems="10"
             android:hint="Please input todo task"
             android:inputType="text"
-            android:padding="12dp"
+            android:padding="14dp"
             android:background="@android:drawable/edit_text"
-            android:text="" />
+            android:imeOptions="actionDone" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="5dp"
-            android:padding="8dp"
-            android:onClick="handleSaveTask"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="8dp"
+            android:padding="12dp"
             android:src="@drawable/add1"
             android:contentDescription="Add task"
-            android:background="?attr/selectableItemBackgroundBorderless" />
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true" />
 
     </LinearLayout>
 
     <ListView
-        android:layout_margin="5dp"
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="1dp"
+        android:paddingTop="4dp" />
 
 </LinearLayout>

@@ -9,14 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,35 +22,57 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private List<Task> taskList = new ArrayList<>();
     private MyAdapter myAdapter;
+    private EditText taskInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        taskInput = findViewById(R.id.taskInput);
+        ImageView addButton = findViewById(R.id.imageView);
+
         myAdapter = new MyAdapter();
-        ((ListView) findViewById(R.id.listView)).setAdapter(myAdapter);
+        ListView listView = findViewById(R.id.listView);
+        listView.setAdapter(myAdapter);
+
+        // Click listener for the + button (more reliable than android:onClick)
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleSaveTask();
+            }
+        });
+
+        // Also allow pressing Enter / Done on keyboard to add
+        taskInput.setOnEditorActionListener((v, actionId, event) -> {
+            handleSaveTask();
+            return true;
+        });
+
         refreshTaskList();
     }
 
-    public void handleSaveTask(View view) {
-        EditText taskInput = (EditText) findViewById(R.id.taskInput);
+    private void handleSaveTask() {
         String task = taskInput.getText().toString().trim();
 
         if (task.isEmpty()) {
+            Toast.makeText(this, "Please enter a task", Toast.LENGTH_SHORT).show();
             return;
         }
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("task", task);
-        MyDatabaseOpener databaseOpener = new MyDatabaseOpener(this);
 
+        MyDatabaseOpener databaseOpener = new MyDatabaseOpener(this);
         SQLiteDatabase writableDatabase = databaseOpener.getWritableDatabase();
         writableDatabase.insert("todo", null, contentValues);
         writableDatabase.close();
 
         taskInput.setText("");
-        this.refreshTaskList();
+        refreshTaskList();
+
+        Toast.makeText(this, "Task added", Toast.LENGTH_SHORT).show();
     }
 
     private void refreshTaskList() {
@@ -64,8 +84,7 @@ public class MainActivity extends AppCompatActivity {
         while (cursor.moveToNext()) {
             int id = cursor.getInt(0);
             String task = cursor.getString(1);
-            Task taskBean = new Task(id, task);
-            taskList.add(taskBean);
+            taskList.add(new Task(id, task));
         }
         cursor.close();
         readableDatabase.close();
@@ -91,17 +110,24 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            Task task = taskList.get(position);
-            View taskView = LayoutInflater.from(MainActivity.this).inflate(R.layout.task_item, null);
-            ((TextView) taskView.findViewById(R.id.taskMessage)).setText(task.getTask());
-            taskView.findViewById(R.id.deleteButton).setOnClickListener(new View.OnClickListener() {
+            final Task task = taskList.get(position);
+
+            View taskView = LayoutInflater.from(MainActivity.this)
+                    .inflate(R.layout.task_item, parent, false);
+
+            TextView taskMessage = taskView.findViewById(R.id.taskMessage);
+            taskMessage.setText(task.getTask());
+
+            ImageView deleteButton = taskView.findViewById(R.id.deleteButton);
+            deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     MyDatabaseOpener databaseOpener = new MyDatabaseOpener(MainActivity.this);
                     SQLiteDatabase writableDatabase = databaseOpener.getWritableDatabase();
-                    writableDatabase.delete("todo", "id=?", new String[]{"" + task.getId()});
+                    writableDatabase.delete("todo", "id=?", new String[]{String.valueOf(task.getId())});
                     writableDatabase.close();
                     refreshTaskList();
+                    Toast.makeText(MainActivity.this, "Task deleted", Toast.LENGTH_SHORT).show();
                 }
             });
 
