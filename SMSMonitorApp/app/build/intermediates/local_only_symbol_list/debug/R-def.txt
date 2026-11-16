@@ -1,0 +1,25 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color primary
+color primary_dark
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
+drawable ic_launcher
+id address
+id button
+id date
+id empty_view
+id main
+id sms_list
+id subject
+layout activity_main
+layout list_item
+string app_name
+style Theme.SMSMonitorApp
+xml backup_rules
+xml data_extraction_rules
