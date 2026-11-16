@@ -1,0 +1,27 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
+drawable add1
+drawable delete
+drawable ic_launcher
+drawable ic_launcher_foreground
+id deleteButton
+id imageView
+id listView
+id main
+id taskInput
+id taskMessage
+layout activity_main
+layout task_item
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Theme.TodoSQLiteApp
+xml backup_rules
+xml data_extraction_rules
