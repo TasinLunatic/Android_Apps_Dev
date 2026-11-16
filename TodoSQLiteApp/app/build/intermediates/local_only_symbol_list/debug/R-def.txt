@@ -9,8 +9,7 @@ color teal_700
 color white
 drawable add1
 drawable delete
-drawable ic_launcher
-drawable ic_launcher_foreground
+drawable ic_launcher_background
 id deleteButton
 id imageView
 id listView
@@ -20,6 +19,7 @@ id taskMessage
 layout activity_main
 layout task_item
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string app_name
 style Theme.TodoSQLiteApp
