@@ -22,7 +22,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,8 +64,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void registerSmsObserver() {
+        // Listen to all SMS changes
         getContentResolver().registerContentObserver(
-                Uri.parse("content://sms/inbox"),
+                Uri.parse("content://sms"),
                 true,
                 new ContentObserver(new Handler()) {
                     @Override
@@ -84,22 +84,39 @@ public class MainActivity extends AppCompatActivity {
     public void handleRefreshSMS() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS)
                 != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "SMS permission not granted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "SMS permission not granted", Toast.LENGTH_LONG).show();
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_SMS},
+                    PERMISSION_REQUEST_CODE);
             return;
         }
 
-        Uri uri = Uri.parse("content://sms/inbox");
-        ContentResolver contentResolver = getContentResolver();
-        Cursor cursor = null;
+        smsList.clear();
 
+        // Try both URIs (some emulators work better with one or the other)
+        readSmsFromUri(Uri.parse("content://sms/inbox"));
+        if (smsList.isEmpty()) {
+            readSmsFromUri(Uri.parse("content://sms/"));
+        }
+
+        myAdapter.notifyDataSetChanged();
+        updateEmptyView();
+
+        if (smsList.isEmpty()) {
+            Toast.makeText(this, "No SMS found. Please send a test SMS first using Extended Controls → Phone", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Loaded " + smsList.size() + " SMS", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void readSmsFromUri(Uri uri) {
+        Cursor cursor = null;
         try {
-            cursor = contentResolver.query(
+            cursor = getContentResolver().query(
                     uri,
                     new String[]{"_id", "address", "subject", "body", "date"},
                     null, null, "date DESC"
             );
-
-            smsList.clear();
 
             if (cursor != null) {
                 while (cursor.moveToNext()) {
@@ -109,17 +126,21 @@ public class MainActivity extends AppCompatActivity {
                     String body = cursor.getString(3);
                     String date = cursor.getString(4);
 
-                    MySMS mySMS = new MySMS(id, address, subject, body, date);
-                    smsList.add(mySMS);
+                    // Avoid duplicates
+                    boolean exists = false;
+                    for (MySMS s : smsList) {
+                        if (s.get_id() == id) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (!exists) {
+                        smsList.add(new MySMS(id, address, subject, body, date));
+                    }
                 }
             }
-
-            myAdapter.notifyDataSetChanged();
-            updateEmptyView();
-
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this, "Error reading SMS: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         } finally {
             if (cursor != null) {
                 cursor.close();
@@ -182,13 +203,12 @@ public class MainActivity extends AppCompatActivity {
             tvAddress.setText(mySMS.getAddress() != null ? mySMS.getAddress() : "Unknown");
             tvBody.setText(mySMS.getBody() != null ? mySMS.getBody() : "(No content)");
 
-            // Format date
             try {
                 long timestamp = Long.parseLong(mySMS.getDate());
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
                 tvDate.setText(sdf.format(new Date(timestamp)));
             } catch (Exception e) {
-                tvDate.setText(mySMS.getDate());
+                tvDate.setText(mySMS.getDate() != null ? mySMS.getDate() : "");
             }
 
             return view;

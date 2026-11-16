@@ -1349,6 +1349,7 @@ int color accent_material_dark 0x7f050019
 int color accent_material_light 0x7f05001a
 int color androidx_core_ripple_material_light 0x7f05001b
 int color androidx_core_secondary_text_default_material_light 0x7f05001c
+int color background_dark 0x7f050309
 int color background_floating_material_dark 0x7f05001d
 int color background_floating_material_light 0x7f05001e
 int color background_material_dark 0x7f05001f
@@ -1362,6 +1363,7 @@ int color bright_foreground_material_dark 0x7f050026
 int color bright_foreground_material_light 0x7f050027
 int color button_material_dark 0x7f050028
 int color button_material_light 0x7f050029
+int color card_dark 0x7f05030a
 int color cardview_dark_background 0x7f05002a
 int color cardview_light_background 0x7f05002b
 int color cardview_shadow_end_color 0x7f05002c
@@ -2067,12 +2069,12 @@ int color mtrl_textinput_focused_box_stroke_color 0x7f0502e7
 int color mtrl_textinput_hovered_box_stroke_color 0x7f0502e8
 int color notification_action_color_filter 0x7f0502e9
 int color notification_icon_bg_color 0x7f0502ea
-int color primary 0x7f0502eb
-int color primary_dark 0x7f0502ec
 int color primary_dark_material_dark 0x7f0502ed
 int color primary_dark_material_light 0x7f0502ee
 int color primary_material_dark 0x7f0502ef
 int color primary_material_light 0x7f0502f0
+int color primary_purple 0x7f05030b
+int color primary_purple_dark 0x7f05030c
 int color primary_text_default_material_dark 0x7f0502f1
 int color primary_text_default_material_light 0x7f0502f2
 int color primary_text_disabled_material_dark 0x7f0502f3
@@ -2086,6 +2088,7 @@ int color secondary_text_default_material_dark 0x7f0502fa
 int color secondary_text_default_material_light 0x7f0502fb
 int color secondary_text_disabled_material_dark 0x7f0502fc
 int color secondary_text_disabled_material_light 0x7f0502fd
+int color surface_dark 0x7f05030d
 int color switch_thumb_disabled_material_dark 0x7f0502fe
 int color switch_thumb_disabled_material_light 0x7f0502ff
 int color switch_thumb_material_dark 0x7f050300
@@ -2094,6 +2097,9 @@ int color switch_thumb_normal_material_dark 0x7f050302
 int color switch_thumb_normal_material_light 0x7f050303
 int color teal_200 0x7f050304
 int color teal_700 0x7f050305
+int color text_hint 0x7f05030e
+int color text_primary 0x7f05030f
+int color text_secondary 0x7f050310
 int color tooltip_background_dark 0x7f050306
 int color tooltip_background_light 0x7f050307
 int color white 0x7f050308
