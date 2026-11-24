@@ -13,6 +13,7 @@ drawable dark_rounded_bg
 drawable ic_launcher_foreground
 id btnCancel
 id btnStart
+id etUrl
 id progressBar
 id tvProgress
 id tvStatus

@@ -39,15 +39,22 @@ public class MainActivity extends AppCompatActivity {
             downloadService.setProgressListener(new DownloadService.ProgressListener() {
                 @Override
                 public void onProgress(int progress) {
-                    uiHandler.post(() -> updateUI(progress));
+                    uiHandler.post(() -> {
+                        progressBar.setProgress(progress);
+                        tvProgress.setText(progress + " %");
+                        tvStatus.setText("Downloading...");
+                    });
                 }
 
                 @Override
                 public void onFinished() {
                     uiHandler.post(() -> {
                         tvStatus.setText("Download finished!");
+                        tvProgress.setText("100 %");
+                        progressBar.setProgress(100);
                         btnStart.setEnabled(true);
                         btnCancel.setEnabled(false);
+                        btnCancel.setText("⏸");
                     });
                 }
 
@@ -56,9 +63,10 @@ public class MainActivity extends AppCompatActivity {
                     uiHandler.post(() -> {
                         progressBar.setProgress(0);
                         tvProgress.setText("0 %");
-                        tvStatus.setText("Cancelled");
+                        tvStatus.setText("Paused / Cancelled");
                         btnStart.setEnabled(true);
                         btnCancel.setEnabled(false);
+                        btnCancel.setText("⏸");
                     });
                 }
             });
@@ -81,30 +89,25 @@ public class MainActivity extends AppCompatActivity {
         tvStatus = findViewById(R.id.tvStatus);
         btnStart = findViewById(R.id.btnStart);
         btnCancel = findViewById(R.id.btnCancel);
-        etUrl = findViewById(R.id.etUrl);   // Link input field
+        etUrl = findViewById(R.id.etUrl);
 
+        // Start Download button
         btnStart.setOnClickListener(v -> {
             if (bound && downloadService != null) {
-                // You can get the URL like this if needed later:
-                // String url = etUrl.getText().toString().trim();
-
                 downloadService.startDownload();
                 tvStatus.setText("Downloading...");
                 btnStart.setEnabled(false);
                 btnCancel.setEnabled(true);
+                btnCancel.setText("⏸");
             }
         });
 
+        // Pause / Cancel button
         btnCancel.setOnClickListener(v -> {
             if (bound && downloadService != null) {
                 downloadService.cancelDownload();
             }
         });
-    }
-
-    private void updateUI(int progress) {
-        progressBar.setProgress(progress);
-        tvProgress.setText(progress + " %");
     }
 
     @Override

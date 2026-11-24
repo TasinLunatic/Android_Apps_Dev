@@ -4,26 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0F172A"
+    android:background="#0B1120"
     android:padding="20dp">
 
-    <!-- Header -->
+    <!-- Top Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="28dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="30dp">
 
-        <!-- Circular Icon -->
         <TextView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
             android:background="@drawable/circle_bg"
             android:gravity="center"
             android:text="↓"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textColor="#FFFFFF"
             android:textStyle="bold"/>
 
@@ -36,60 +35,73 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HyperLoad"
-                android:textSize="22sp"
+                android:text="Downloader"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#F1F5F9"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HIGH SPEED DOWNLOADER"
-                android:textSize="11sp"
-                android:textColor="#94A3B8"
-                android:letterSpacing="0.05"/>
+                android:text="Service Based • Fast &amp; Secure"
+                android:textSize="12sp"
+                android:textColor="#64748B"
+                android:layout_marginTop="1dp"/>
         </LinearLayout>
     </LinearLayout>
 
-    <!-- URL Box -->
-    <TextView
+    <!-- URL Input Card -->
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:background="@drawable/dark_rounded_bg"
-        android:gravity="center_vertical"
-        android:paddingStart="18dp"
-        android:paddingEnd="18dp"
-        android:text="https://proof.ovh.net/files/100Mb.dat"
-        android:textColor="#CBD5E1"
-        android:textSize="14sp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#1E293B"
+        android:layout_marginBottom="18dp">
+
+        <EditText
+            android:id="@+id/etUrl"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:background="@android:color/transparent"
+            android:hint="Paste download link here..."
+            android:textColorHint="#64748B"
+            android:textColor="#E2E8F0"
+            android:textSize="14sp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:singleLine="true"
+            android:inputType="textUri"/>
+    </androidx.cardview.widget.CardView>
 
     <!-- Start Button -->
     <Button
         android:id="@+id/btnStart"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:text="Start Download"
-        android:textSize="16sp"
+        android:text="START DOWNLOAD"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
         android:backgroundTint="#7C3AED"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginBottom="36dp"/>
 
-    <!-- Active Task Title -->
+    <!-- Active Task Label -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Active Task"
-        android:textSize="15sp"
-        android:textColor="#94A3B8"
+        android:text="ACTIVE TASK"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="#64748B"
+        android:letterSpacing="0.1"
         android:layout_marginBottom="12dp"/>
 
     <!-- Active Task Card -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="18dp"
         app:cardElevation="0dp"
         app:cardBackgroundColor="#1E293B">
 
@@ -105,21 +117,20 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <!-- File Icon -->
                 <TextView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/circle_bg_small"
                     android:gravity="center"
                     android:text="📄"
-                    android:textSize="16sp"/>
+                    android:textSize="17sp"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:layout_marginStart="12dp">
+                    android:layout_marginStart="14dp">
 
                     <TextView
                         android:id="@+id/tvStatus"
@@ -127,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:text="Waiting for link..."
                         android:textSize="15sp"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#F1F5F9"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -137,33 +148,30 @@
                         android:text="0 %"
                         android:textSize="13sp"
                         android:textColor="#94A3B8"
-                        android:layout_marginTop="2dp"/>
+                        android:layout_marginTop="3dp"/>
                 </LinearLayout>
 
-                <!-- Cancel Button (small) -->
                 <Button
                     android:id="@+id/btnCancel"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:text="⏸"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:backgroundTint="#334155"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#E2E8F0"
                     android:enabled="false"/>
             </LinearLayout>
 
-            <!-- Progress Bar -->
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="6dp"
+                android:layout_height="7dp"
                 android:max="100"
                 android:progress="0"
                 android:progressTint="#22C55E"
                 android:progressBackgroundTint="#334155"
-                android:layout_marginTop="14dp"/>
-
+                android:layout_marginTop="16dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

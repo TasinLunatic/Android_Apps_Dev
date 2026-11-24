@@ -1,11 +1,7 @@
 [
     {
-        "merged": "com.example.servicedownloader.app-debug-31:/drawable_circle_bg.xml.flat",
-        "source": "com.example.servicedownloader.app-main-33:/drawable/circle_bg.xml"
-    },
-    {
-        "merged": "com.example.servicedownloader.app-debug-31:/drawable_dark_rounded_bg.xml.flat",
-        "source": "com.example.servicedownloader.app-main-33:/drawable/dark_rounded_bg.xml"
+        "merged": "C:\\Users\\Tasin\\.gradle\\daemon\\8.12\\com.example.servicedownloader.app-debug-31:\\drawable_circle_bg.xml.flat",
+        "source": "C:\\Users\\Tasin\\.gradle\\daemon\\8.12\\com.example.servicedownloader.app-main-33:\\drawable\\circle_bg.xml"
     },
     {
         "merged": "C:\\Users\\Tasin\\.gradle\\daemon\\8.12\\com.example.servicedownloader.app-debug-31:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
@@ -16,8 +12,16 @@
         "source": "com.example.servicedownloader.app-main-33:/layout/activity_main.xml"
     },
     {
+        "merged": "C:\\Users\\Tasin\\.gradle\\daemon\\8.12\\com.example.servicedownloader.app-debug-31:\\drawable_circle_bg_small.xml.flat",
+        "source": "C:\\Users\\Tasin\\.gradle\\daemon\\8.12\\com.example.servicedownloader.app-main-33:\\drawable\\circle_bg_small.xml"
+    },
+    {
         "merged": "C:\\Users\\Tasin\\.gradle\\daemon\\8.12\\com.example.servicedownloader.app-debug-31:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "C:\\Users\\Tasin\\.gradle\\daemon\\8.12\\com.example.servicedownloader.app-main-33:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Tasin\\.gradle\\daemon\\8.12\\com.example.servicedownloader.app-debug-31:\\drawable_dark_rounded_bg.xml.flat",
+        "source": "C:\\Users\\Tasin\\.gradle\\daemon\\8.12\\com.example.servicedownloader.app-main-33:\\drawable\\dark_rounded_bg.xml"
     },
     {
         "merged": "C:\\Users\\Tasin\\.gradle\\daemon\\8.12\\com.example.servicedownloader.app-debug-31:\\layout_activity_main.xml.flat",
@@ -26,9 +30,5 @@
     {
         "merged": "C:\\Users\\Tasin\\.gradle\\daemon\\8.12\\com.example.servicedownloader.app-debug-31:\\drawable_ic_launcher_foreground.xml.flat",
         "source": "C:\\Users\\Tasin\\.gradle\\daemon\\8.12\\com.example.servicedownloader.app-main-33:\\drawable\\ic_launcher_foreground.xml"
-    },
-    {
-        "merged": "com.example.servicedownloader.app-debug-31:/drawable_circle_bg_small.xml.flat",
-        "source": "com.example.servicedownloader.app-main-33:/drawable/circle_bg_small.xml"
     }
 ]
