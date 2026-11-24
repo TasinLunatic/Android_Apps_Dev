@@ -45,7 +45,7 @@ public class DownloadService extends Service {
 
     public void startDownload() {
         if (isDownloading.get()) {
-            return; // prevent multiple concurrent downloads
+            return;
         }
 
         isDownloading.set(true);
@@ -63,7 +63,7 @@ public class DownloadService extends Service {
                     return;
                 }
                 try {
-                    Thread.sleep(150); // simulate network delay
+                    Thread.sleep(150);
                 } catch (InterruptedException e) {
                     progress.set(0);
                     isDownloading.set(false);
