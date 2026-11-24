@@ -48,12 +48,10 @@ public class DownloadService extends Service {
 
         isDownloading.set(true);
         cancelRequested.set(false);
-        progress.set(0);
 
         executor.execute(() -> {
-            for (int i = 1; i <= 100; i++) {
+            for (int i = progress.get() + 1; i <= 100; i++) {
                 if (cancelRequested.get()) {
-                    progress.set(0);
                     isDownloading.set(false);
                     if (listener != null) listener.onCancelled();
                     return;
@@ -61,7 +59,6 @@ public class DownloadService extends Service {
                 try {
                     Thread.sleep(150);
                 } catch (InterruptedException e) {
-                    progress.set(0);
                     isDownloading.set(false);
                     if (listener != null) listener.onCancelled();
                     return;
@@ -84,6 +81,11 @@ public class DownloadService extends Service {
 
     public boolean isDownloading() {
         return isDownloading.get();
+    }
+
+    // Optional: call this if you want to reset progress manually
+    public void resetProgress() {
+        progress.set(0);
     }
 
     @Override

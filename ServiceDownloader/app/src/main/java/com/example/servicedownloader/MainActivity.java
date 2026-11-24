@@ -54,19 +54,16 @@ public class MainActivity extends AppCompatActivity {
                         progressBar.setProgress(100);
                         btnStart.setEnabled(true);
                         btnCancel.setEnabled(false);
-                        btnCancel.setText("⏸");
                     });
                 }
 
                 @Override
                 public void onCancelled() {
                     uiHandler.post(() -> {
-                        progressBar.setProgress(0);
-                        tvProgress.setText("0 %");
-                        tvStatus.setText("Paused / Cancelled");
+                        // Keep current percentage (do not reset)
+                        tvStatus.setText("Paused");
                         btnStart.setEnabled(true);
                         btnCancel.setEnabled(false);
-                        btnCancel.setText("⏸");
                     });
                 }
             });
@@ -91,18 +88,15 @@ public class MainActivity extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancel);
         etUrl = findViewById(R.id.etUrl);
 
-        // Start Download button
         btnStart.setOnClickListener(v -> {
             if (bound && downloadService != null) {
                 downloadService.startDownload();
                 tvStatus.setText("Downloading...");
                 btnStart.setEnabled(false);
                 btnCancel.setEnabled(true);
-                btnCancel.setText("⏸");
             }
         });
 
-        // Pause / Cancel button
         btnCancel.setOnClickListener(v -> {
             if (bound && downloadService != null) {
                 downloadService.cancelDownload();
