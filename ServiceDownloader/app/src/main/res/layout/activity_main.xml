@@ -7,7 +7,7 @@
     android:background="#0F172A"
     android:padding="20dp">
 
-    <!-- Header -->
+    <!-- Header Icon + Title -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +16,6 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="28dp">
 
-        <!-- Circular Icon -->
         <TextView
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -27,41 +26,30 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold"/>
 
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="14dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HyperLoad"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HIGH SPEED DOWNLOADER"
-                android:textSize="11sp"
-                android:textColor="#94A3B8"
-                android:letterSpacing="0.05"/>
-        </LinearLayout>
+            android:text="HIGH SPEED DOWNLOADER"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="14dp"/>
     </LinearLayout>
 
-    <!-- URL Box -->
-    <TextView
+    <!-- Link Input Box -->
+    <EditText
+        android:id="@+id/etUrl"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:background="@drawable/dark_rounded_bg"
-        android:gravity="center_vertical"
+        android:hint="Paste any download link here..."
+        android:textColorHint="#64748B"
+        android:textColor="#E2E8F0"
+        android:textSize="14sp"
         android:paddingStart="18dp"
         android:paddingEnd="18dp"
-        android:text="https://proof.ovh.net/files/100Mb.dat"
-        android:textColor="#CBD5E1"
-        android:textSize="14sp"
+        android:singleLine="true"
+        android:inputType="textUri"
         android:layout_marginBottom="16dp"/>
 
     <!-- Start Button -->
@@ -105,7 +93,6 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <!-- File Icon -->
                 <TextView
                     android:layout_width="36dp"
                     android:layout_height="36dp"
@@ -140,11 +127,10 @@
                         android:layout_marginTop="2dp"/>
                 </LinearLayout>
 
-                <!-- Cancel Button (small) -->
                 <Button
                     android:id="@+id/btnCancel"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:text="⏸"
                     android:textSize="16sp"
                     android:backgroundTint="#334155"
@@ -152,7 +138,6 @@
                     android:enabled="false"/>
             </LinearLayout>
 
-            <!-- Progress Bar -->
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -163,7 +148,6 @@
                 android:progressTint="#22C55E"
                 android:progressBackgroundTint="#334155"
                 android:layout_marginTop="14dp"/>
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
