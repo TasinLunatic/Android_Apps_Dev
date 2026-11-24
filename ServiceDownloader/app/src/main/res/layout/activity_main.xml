@@ -4,90 +4,167 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center_horizontal"
-    android:background="#F5F7FA">
+    android:background="#0F172A"
+    android:padding="20dp">
 
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="28dp">
+
+        <!-- Circular Icon -->
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/circle_bg"
+            android:gravity="center"
+            android:text="↓"
+            android:textSize="22sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HyperLoad"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HIGH SPEED DOWNLOADER"
+                android:textSize="11sp"
+                android:textColor="#94A3B8"
+                android:letterSpacing="0.05"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- URL Box -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@drawable/dark_rounded_bg"
+        android:gravity="center_vertical"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:text="https://proof.ovh.net/files/100Mb.dat"
+        android:textColor="#CBD5E1"
+        android:textSize="14sp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Start Button -->
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Start Download"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#7C3AED"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Active Task Title -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Service Simulated Downloader"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#1A237E"
-        android:layout_marginBottom="32dp"
-        android:layout_marginTop="24dp"/>
+        android:text="Active Task"
+        android:textSize="15sp"
+        android:textColor="#94A3B8"
+        android:layout_marginBottom="12dp"/>
 
+    <!-- Active Task Card -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="6dp">
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#1E293B">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="18dp">
 
-            <TextView
-                android:id="@+id/tvStatus"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ready"
-                android:textSize="16sp"
-                android:textColor="#455A64"
-                android:layout_marginBottom="12dp"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
+                <!-- File Icon -->
+                <TextView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/circle_bg_small"
+                    android:gravity="center"
+                    android:text="📄"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="12dp">
+
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Waiting for link..."
+                        android:textSize="15sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 %"
+                        android:textSize="13sp"
+                        android:textColor="#94A3B8"
+                        android:layout_marginTop="2dp"/>
+                </LinearLayout>
+
+                <!-- Cancel Button (small) -->
+                <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="⏸"
+                    android:textSize="16sp"
+                    android:backgroundTint="#334155"
+                    android:textColor="#FFFFFF"
+                    android:enabled="false"/>
+            </LinearLayout>
+
+            <!-- Progress Bar -->
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="12dp"
+                android:layout_height="6dp"
                 android:max="100"
                 android:progress="0"
-                android:progressTint="#3F51B5"/>
+                android:progressTint="#22C55E"
+                android:progressBackgroundTint="#334155"
+                android:layout_marginTop="14dp"/>
 
-            <TextView
-                android:id="@+id/tvProgress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0 %"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:textColor="#1A237E"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/btnStart"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Start Download"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="#3F51B5"
-            android:textColor="#FFFFFF"/>
-
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cancel"
-            android:layout_marginStart="8dp"
-            android:backgroundTint="#E53935"
-            android:textColor="#FFFFFF"
-            android:enabled="false"/>
-    </LinearLayout>
 
 </LinearLayout>

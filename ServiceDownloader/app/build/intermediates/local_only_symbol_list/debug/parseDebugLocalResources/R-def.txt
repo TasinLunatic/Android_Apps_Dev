@@ -7,6 +7,9 @@ color purple_700
 color teal_200
 color teal_700
 color white
+drawable circle_bg
+drawable circle_bg_small
+drawable dark_rounded_bg
 drawable ic_launcher_foreground
 id btnCancel
 id btnStart
