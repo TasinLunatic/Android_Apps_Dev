@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvStatus;
     private Button btnStart;
     private Button btnCancel;
+    private EditText etUrl;
 
     private final Handler uiHandler = new Handler(Looper.getMainLooper());
 
@@ -79,9 +81,13 @@ public class MainActivity extends AppCompatActivity {
         tvStatus = findViewById(R.id.tvStatus);
         btnStart = findViewById(R.id.btnStart);
         btnCancel = findViewById(R.id.btnCancel);
+        etUrl = findViewById(R.id.etUrl);   // Link input field
 
         btnStart.setOnClickListener(v -> {
             if (bound && downloadService != null) {
+                // You can get the URL like this if needed later:
+                // String url = etUrl.getText().toString().trim();
+
                 downloadService.startDownload();
                 tvStatus.setText("Downloading...");
                 btnStart.setEnabled(false);
