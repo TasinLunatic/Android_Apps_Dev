@@ -44,9 +44,7 @@ public class DownloadService extends Service {
     }
 
     public void startDownload() {
-        if (isDownloading.get()) {
-            return;
-        }
+        if (isDownloading.get()) return;
 
         isDownloading.set(true);
         cancelRequested.set(false);
@@ -57,9 +55,7 @@ public class DownloadService extends Service {
                 if (cancelRequested.get()) {
                     progress.set(0);
                     isDownloading.set(false);
-                    if (listener != null) {
-                        listener.onCancelled();
-                    }
+                    if (listener != null) listener.onCancelled();
                     return;
                 }
                 try {
@@ -67,20 +63,14 @@ public class DownloadService extends Service {
                 } catch (InterruptedException e) {
                     progress.set(0);
                     isDownloading.set(false);
-                    if (listener != null) {
-                        listener.onCancelled();
-                    }
+                    if (listener != null) listener.onCancelled();
                     return;
                 }
                 progress.set(i);
-                if (listener != null) {
-                    listener.onProgress(i);
-                }
+                if (listener != null) listener.onProgress(i);
             }
             isDownloading.set(false);
-            if (listener != null) {
-                listener.onFinished();
-            }
+            if (listener != null) listener.onFinished();
         });
     }
 
